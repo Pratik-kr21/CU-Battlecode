@@ -1,0 +1,119 @@
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import extend_schema_field, extend_schema_serializer
+from rest_framework import serializers
+
+from siarnaq.api.episodes.models import (
+    EligibilityCriterion,
+    Episode,
+    Map,
+    ReleaseStatus,
+    Tournament,
+    TournamentRound,
+)
+
+
+class AutoscrimSerializer(serializers.Serializer):
+    best_of = serializers.IntegerField(min_value=1)
+
+
+class EligibilityCriterionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EligibilityCriterion
+        fields = ["id", "title", "description", "icon"]
+        read_only_fields = ["title", "description", "icon"]
+
+
+class EpisodeSerializer(serializers.ModelSerializer):
+    eligibility_criteria = EligibilityCriterionSerializer(many=True)
+    frozen = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Episode
+        fields = [
+            "name_short",
+            "name_long",
+            "blurb",
+            "game_release",
+            "game_archive",
+            "language",
+            "scaffold",
+            "artifact_name",
+            "release_version_client",
+            "release_version_public",
+            "release_version_saturn",
+            "eligibility_criteria",
+            "frozen",
+        ]
+
+    @extend_schema_field(OpenApiTypes.BOOL)
+    def get_frozen(self, obj):
+        return obj.frozen()
+
+
+@extend_schema_serializer(
+    # workaround for https://github.com/OpenAPITools/openapi-generator/issues/9289
+    component_name="GameMap"
+)
+class MapSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Map
+        fields = ["id", "episode", "name", "is_public"]
+        read_only_fields = ["episode", "name", "is_public"]
+
+
+class TournamentSerializer(serializers.ModelSerializer):
+    is_eligible = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Tournament
+        fields = [
+            "name_short",
+            "name_long",
+            "blurb",
+            "episode",
+            "style",
+            "display_date",
+            "eligibility_includes",
+            "eligibility_excludes",
+            "require_resume",
+            "is_public",
+            "submission_freeze",
+            "submission_unfreeze",
+            "is_eligible",
+        ]
+
+    @extend_schema_field(OpenApiTypes.BOOL)
+    def get_is_eligible(self, obj):
+        user = self.context["request"].user
+        if not user.is_authenticated:
+            return False
+        return user.teams.filter_eligible(obj).exists()
+
+
+class TournamentRoundSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TournamentRound
+        fields = [
+            "id",
+            "tournament",
+            "external_id",
+            "name",
+            "maps",
+            "release_status",
+            "display_order",
+            "in_progress",
+        ]
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        # If user is staff, do not redact anything
+        if self.context["request"].user.is_staff:
+            return data
+        # Redact maps if not yet fully released
+        if instance.release_status != ReleaseStatus.RESULTS:
+            data["maps"] = None
+        return data
+
+
+class EmptySerializer(serializers.Serializer):
+    pass

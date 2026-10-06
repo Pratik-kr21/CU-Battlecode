@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.battlecode:battlecode26:2026.cu.1'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+sourceSets {
+    main {
+        java.srcDirs = ['src']
+    }
+}
+
+task run(type: JavaExec) {
+    dependsOn classes
+    mainClass = 'battlecode.server.Main'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ['-c=-']
+    jvmArgs = [
+        '--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED',
+        '--add-opens=java.base/jdk.internal.math=ALL-UNNAMED',
+        '--add-opens=java.base/jdk.internal.util=ALL-UNNAMED',
+        '--add-opens=java.base/jdk.internal.access=ALL-UNNAMED',
+        '--add-opens=java.base/sun.security.action=ALL-UNNAMED',
+        '-Dbc.server.mode=headless',
+        '-Dbc.server.map-path=maps',
+        '-Dbc.game.team-a=examplefuncsplayer',
+        '-Dbc.game.team-b=examplefuncsplayer',
+        '-Dbc.game.team-a.url=' + sourceSets.main.output.classesDirs.getAsPath(),
+        '-Dbc.game.team-b.url=' + sourceSets.main.output.classesDirs.getAsPath(),
+        '-Dbc.game.maps=cheesebottles',
+        '-Dbc.server.save-file=matches/match.bc26'
+    ]
+}

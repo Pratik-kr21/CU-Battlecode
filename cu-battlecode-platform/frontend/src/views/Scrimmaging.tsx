@@ -1,0 +1,160 @@
+import type React from "react";
+import { useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
+import InboxTable from "components/tables/scrimmaging/InboxTable";
+import OutboxTable from "components/tables/scrimmaging/OutboxTable";
+import { getParamEntries, parsePageParam } from "utils/searchParamHelpers";
+import TeamsTable from "components/tables/scrimmaging/TeamsTable";
+import ScrimHistoryTable from "components/tables/scrimmaging/ScrimHistoryTable";
+import { Tab } from "@headlessui/react";
+import TournamentMatchesTable from "components/tables/scrimmaging/TournamentMatchesTable";
+import ScrimmagingRecord from "components/compete/ScrimmagingRecord";
+import { useEpisodeId } from "contexts/EpisodeContext";
+import { useUserTeam } from "api/team/useTeam";
+import Spinner from "components/Spinner";
+import { PageTitle, PageContainer } from "components/elements/BattlecodeStyle";
+import { classNames } from "api/helpers";
+
+interface QueryParams {
+  inboxPage: number;
+  outboxPage: number;
+  teamsPage: number;
+  scrimsPage: number;
+  tourneyPage: number;
+  search: string;
+}
+
+const Scrimmaging: React.FC = () => {
+  const { episodeId } = useEpisodeId();
+  const userTeam = useUserTeam({ episodeId });
+
+  const tabClassName = ({ selected }: { selected: boolean }): string =>
+    classNames(
+      "w-full rounded-lg p-2.5 text-sm font-medium leading-5",
+      "ring-white/60 ring-offset-2 ring-offset-cyan-400 focus:outline-none focus:ring-2",
+      selected
+        ? "bg-white text-cyan-700 shadow"
+        : "text-cyan-100 hover:bg-white/[0.12] hover:text-white",
+    );
+
+  const panelClassName = classNames(
+    "grid grid-cols-1 gap-2 min-w-0",
+    "rounded-xl bg-white p-3",
+    "ring-white/60 ring-offset-2 ring-offset-cyan-400 focus:outline-none focus:ring-2",
+  );
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryParams: QueryParams = useMemo(
+    () => ({
+      inboxPage: parsePageParam("inboxPage", searchParams),
+      outboxPage: parsePageParam("outboxPage", searchParams),
+      teamsPage: parsePageParam("teamsPage", searchParams),
+      scrimsPage: parsePageParam("scrimsPage", searchParams),
+      tourneyPage: parsePageParam("tourneyPage", searchParams),
+      search: searchParams.get("search") ?? "",
+    }),
+    [searchParams],
+  );
+
+  function handleSearch(search: string): void {
+    setSearchParams((prev) => ({
+      ...getParamEntries(prev),
+      teamsPage: "1",
+      search,
+    }));
+  }
+
+  /**
+   * Helper function to update the page number of the desired table.
+   * This is done by updating the URL (search) params.
+   */
+  function handlePage(
+    page: number,
+    key: keyof Omit<QueryParams, "search">,
+  ): void {
+    setSearchParams((prev) => ({
+      ...getParamEntries(prev),
+      [key]: page.toString(),
+    }));
+  }
+
+  const TABLIST_STYLE = "flex space-x-1 rounded-xl bg-cyan-600 p-1";
+
+  const tabList = (vertical: boolean): React.JSX.Element => (
+    <Tab.List className={`${vertical ? "flex-col" : ""} ${TABLIST_STYLE}`}>
+      <Tab className={tabClassName}>Inbox</Tab>
+      <Tab className={tabClassName}>Outbox</Tab>
+      <Tab className={tabClassName}>Find Teams</Tab>
+      <Tab className={tabClassName}>Scrim History</Tab>
+      <Tab className={tabClassName}>Record</Tab>
+      <Tab className={tabClassName}>Tournament Matches</Tab>
+    </Tab.List>
+  );
+
+  const tabPanels = (
+    <Tab.Panels className="mt-2">
+      <Tab.Panel className={panelClassName}>
+        <InboxTable inboxPage={queryParams.inboxPage} handlePage={handlePage} />
+      </Tab.Panel>
+      <Tab.Panel className={panelClassName}>
+        <OutboxTable
+          outboxPage={queryParams.outboxPage}
+          handlePage={handlePage}
+        />
+      </Tab.Panel>
+      <Tab.Panel className={panelClassName}>
+        <TeamsTable
+          search={queryParams.search}
+          teamsPage={queryParams.teamsPage}
+          handleSearch={handleSearch}
+          handlePage={handlePage}
+        />
+      </Tab.Panel>
+      <Tab.Panel className={panelClassName}>
+        <ScrimHistoryTable
+          scrimsPage={queryParams.scrimsPage}
+          handlePage={handlePage}
+        />
+      </Tab.Panel>
+      <Tab.Panel className={panelClassName}>
+        <h1 className="mb-4 text-2xl font-bold leading-7 text-gray-900">
+          Scrimmaging Record
+        </h1>
+        {!userTeam.isSuccess ? (
+          <div className="flex flex-row items-center justify-center text-xl">
+            <Spinner size="lg" />
+          </div>
+        ) : (
+          <ScrimmagingRecord team={userTeam.data} />
+        )}
+      </Tab.Panel>
+      <Tab.Panel className={panelClassName}>
+        <TournamentMatchesTable
+          tourneyPage={queryParams.tourneyPage}
+          handlePage={handlePage}
+        />
+      </Tab.Panel>
+    </Tab.Panels>
+  );
+
+  return (
+    <PageContainer>
+      <PageTitle>Scrimmaging</PageTitle>
+
+      <div className="flex w-full flex-1 flex-col md:hidden">
+        <Tab.Group vertical>
+          {tabList(true)}
+          {tabPanels}
+        </Tab.Group>
+      </div>
+      <div className="hidden md:flex md:flex-col">
+        <Tab.Group>
+          {tabList(false)}
+          {tabPanels}
+        </Tab.Group>
+      </div>
+    </PageContainer>
+  );
+};
+
+export default Scrimmaging;

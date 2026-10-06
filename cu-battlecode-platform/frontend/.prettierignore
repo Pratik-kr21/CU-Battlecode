@@ -1,0 +1,15 @@
+/build
+/node_modules
+/.pnp
+.pnp.js
+
+# production
+/build
+
+# auto-generated types/models
+src/api/_autogen
+schema.yml
+
+/coverage
+
+package-lock.json
