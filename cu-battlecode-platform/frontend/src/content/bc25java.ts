@@ -106,7 +106,7 @@ If you make a new tool that could be useful to others, please post it in the [#o
 `,
   Lectures: `
 
-Battlecode 2025 Java will be holding lectures, where a dev will be going over possible strategy, coding up an example player, answering questions, etc. You do not have to be an MIT student to view our lectures, and they are open to everyone! The lectures are beginner-friendly and are stongly recommended for both newcomers and past participants.
+Battlecode 2025 Java will be holding lectures, where a dev will be going over possible strategy, coding up an example player, answering questions, etc. You do not have to be an Chandigarh University student to view our lectures, and they are open to everyone! The lectures are beginner-friendly and are stongly recommended for both newcomers and past participants.
 
 All lectures are streamed live on and later uploaded to [our YouTube page](https://www.youtube.com/@MITBattlecode).
 `,
@@ -349,7 +349,7 @@ Please note that **all times on this page are in your current time zone**. Refer
 - **Final Tournament Prizes:** Prizes will range from $5000 for 1st place to $500 for 16th place.
 - **Sprint Prizes:** Winner of each tournament will receive $250.
 - **High School Prizes:** Prizes will range from $600 to $200 for the top 3 teams.
-- **MIT Novice Prizes:** Prizes will range from $500 to $200 for the top 3 teams.\n\n
+- **Chandigarh University Novice Prizes:** Prizes will range from $500 to $200 for the top 3 teams.\n\n
 
 - **Most Innovative Breakthrough Prize:** $1000 prize given by our Platinum Sponsor, [Adobe](https://www.adobe.com/).
 - **Most Adaptive Strategy Prize:** $750 prize given by our Gold Sponsor, [Amplitude](https://www.amplitude.com/).
@@ -386,7 +386,7 @@ Additionally, tournament specific eligibility is listed below:
 - **Sprint Tournament:** All teams are eligible.
 - **US Qualifier:** Teams must **consist entirely of US college students** studying full-time, or in a transition phase.
 - **International Qualifier:** Teams must **consist entirely of college students** studying full-time, or in a transition phase, where at least one team member is not a US student.
-- **MIT Novice Tournament:** Teams must **consist entirely of MIT students** who have never competed in Battlecode before.
+- **Chandigarh University Novice Tournament:** Teams must **consist entirely of Chandigarh University students** who have never competed in Battlecode before.
 - **High School Tournament:** Teams must **consist entirely of high school students**.
 - **Final Tournament:** Teams must have qualified via the US or International Qualifier. The final match of the Newbie and High School tournaments will also be played at the final tournament.
 

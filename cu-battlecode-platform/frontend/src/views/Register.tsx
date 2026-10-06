@@ -134,7 +134,7 @@ const Register: React.FC = () => {
             }))}
           />
           <Input
-            placeholder="MIT"
+            placeholder="Chandigarh University"
             label="School"
             {...register("profile.school")}
           />

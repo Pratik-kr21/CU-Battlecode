@@ -4,7 +4,7 @@ import { PageContainer } from "components/elements/BattlecodeStyle";
 
 const ENVIRONMENT = `
 Maintaining a safe and inclusive environment for competitors is a top priority for Battlecode.
-Battlecode strictly follows [MIT's Policies](https://policies-procedures.mit.edu/) on responsible and ethical conduct.
+Battlecode strictly follows [Chandigarh University's Policies](https://policies-procedures.mit.edu/) on responsible and ethical conduct.
 
 If someone makes you or anyone else feel unsafe or unwelcome, please report it to Teh Devs as soon as possible at [battlecode@mit.edu](mailto:battlecode@mit.edu).
 

@@ -43,7 +43,7 @@ export const TOURNAMENTS: Partial<Record<TourneyPageKey, string>> = {
   * __US Qualifier:__ Teams must __consist entirely of US college students__ studying full-time, or in a transition phase.
   * __International Qualifier:__ Teams must __consist entirely of college students__ studying full-time, or in a transition phase,
     where at least one team member is not a US student.
-  * __MIT Newbie Tournament:__ Teams must __consist entirely of MIT students__ who have never competed in Battlecode before.
+  * __MIT Newbie Tournament:__ Teams must __consist entirely of Chandigarh University students__ who have never competed in Battlecode before.
   * __High School Tournament:__ Teams must __consist entirely of high school students__.
   * __Final Tournament:__ Teams must have qualified via the US or International Qualifier. The final match of the Newbie and High School tournaments will also be played at the final tournament.
 

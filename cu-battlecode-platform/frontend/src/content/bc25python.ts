@@ -16,7 +16,7 @@ This is the Battlecode 2025 Python contest website, which will be your main hub 
 `,
 
   "Account and Team Creation": `
-To participate in Battlecode, you need an account and a team. Each team can consist of 1 to 4 people. Anyone can upload a bot and participate in scrimmage matches, but only teams of MIT students can participate in tournaments.
+To participate in Battlecode, you need an account and a team. Each team can consist of 1 to 4 people. Anyone can upload a bot and participate in scrimmage matches, but only teams of Chandigarh University students can participate in tournaments.
 
 [Create an account](/register) on this website, and then go to the [team section](/bc25python/my_team) to either create or join a team.`,
 
@@ -75,7 +75,7 @@ If you make a new tool that could be useful to others, please post it in the [#o
 `,
   Lectures: `
 
-Battlecode 2025 Python will be holding lectures, where a dev will be going over possible strategy, coding up an example player, answering questions, etc. You do not have to be an MIT student to view our lectures, and they are open to everyone! The lectures are beginner-friendly and are stongly recommended for both newcomers and past participants.
+Battlecode 2025 Python will be holding lectures, where a dev will be going over possible strategy, coding up an example player, answering questions, etc. You do not have to be an Chandigarh University student to view our lectures, and they are open to everyone! The lectures are beginner-friendly and are stongly recommended for both newcomers and past participants.
 
 All lectures are streamed live on and later uploaded to [our YouTube page](https://www.youtube.com/@MITBattlecode).
 `,
@@ -131,7 +131,7 @@ export const TOURNAMENTS: Partial<Record<TourneyPageKey, string>> = {
   - **Sprint Tournament:** All teams are eligible.
   - **US Qualifier:** Teams must **consist entirely of US college students** studying full-time, or in a transition phase.
   - **International Qualifier:** Teams must **consist entirely of college students** studying full-time, or in a transition phase, where at least one team member is not a US student.
-  - **MIT Newbie Tournament:** Teams must **consist entirely of MIT students** who have never competed in Battlecode before.
+  - **Chandigarh University Newbie Tournament:** Teams must **consist entirely of Chandigarh University students** who have never competed in Battlecode before.
   - **High School Tournament:** Teams must **consist entirely of high school students**.
   - **Final Tournament:** Teams must have qualified via the US or International Qualifier. The final match of the Newbie and High School tournaments will also be played at the final tournament.
 

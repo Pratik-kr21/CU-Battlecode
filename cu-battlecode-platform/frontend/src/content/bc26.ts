@@ -10,9 +10,9 @@ export const QUICKSTART: Partial<Record<QuickStartPageKey, string>> = {
   Overview: `
 This is the Battlecode 2026 contest website, which will be your main hub for all Battlecode-related things for the duration of the contest. For a general overview of what Battlecode is, visit [our landing page](https://battlecode.org/).
 
-*Deep beneath the abandoned dorms of MIT, thanks to a student letting their failed final project loose on campus, a robotic rat society has formed. Like all developing societies, there is, of course, conflict. It is not chromatic, but it is dangerous. You have heard tales of many large, hungry robot cats (someone else's failed project, probably) that are on the prowl for sustenance. As such, your society and a nearby society have formed an uneasy alliance.*
+*Deep beneath the abandoned dorms of Chandigarh University, thanks to a student letting their failed final project loose on campus, a robotic programmer society has formed. Like all developing societies, there is, of course, conflict. It is not chromatic, but it is dangerous. You have heard tales of many large, hungry robot bugs (someone else's failed project, probably) that are on the prowl for sustenance. As such, your society and a nearby society have formed an uneasy alliance.*
 
-*Before you begin putting the cat to sleep, you must remember the task you were born with: protect your mother, the big fat rat king.*
+*Before you begin putting the bug to sleep, you must remember the task you were born with: protect your mother, the big fat lead programmer.*
 
 `,
   "Account and Team Creation": `
@@ -140,7 +140,7 @@ If you make a new tool that could be useful to others, please post it in the [#o
 `,
   Lectures: `
 
-Battlecode 2026 will be holding lectures, where a dev will be going over possible strategy, coding up an example player, answering questions, etc. You do not have to be an MIT student to view our lectures, and they are open to everyone! The lectures are beginner-friendly and are stongly recommended for both newcomers and past participants.
+Battlecode 2026 will be holding lectures, where a dev will be going over possible strategy, coding up an example player, answering questions, etc. You do not have to be an Chandigarh University student to view our lectures, and they are open to everyone! The lectures are beginner-friendly and are stongly recommended for both newcomers and past participants.
 
 All lectures are streamed live on and later uploaded to [our YouTube page](https://www.youtube.com/@MITBattlecode).
 `,
@@ -387,7 +387,7 @@ The tournament schedule will be released before the contest begins. Please check
 - **Final Tournament Prizes:** Prizes will range from $5000 for 1st place to $500 for 16th place.
 - **Sprint Prizes:** Winner of each tournament will receive $250.
 - **High School Prizes:** Prizes will range from $600 to $200 for the top 3 teams.
-- **MIT Novice Prizes:** Prizes will range from $500 to $200 for the top 3 teams.\n\n
+- **Chandigarh University Novice Prizes:** Prizes will range from $500 to $200 for the top 3 teams.\n\n
 
 - **Sponsor-Awarded Prizes**: Coming soon! \n\n
 
@@ -423,7 +423,7 @@ Additionally, tournament specific eligibility is listed below:
 - **Sprint Tournament:** All teams are eligible.
 - **US Qualifier:** Teams must **consist entirely of US college students** studying full-time, or in a transition phase.
 - **International Qualifier:** Teams must **consist entirely of college students** studying full-time, or in a transition phase, where at least one team member is not a US student.
-- **MIT Novice Tournament:** Teams must **consist entirely of MIT students** who have never competed in Battlecode before.
+- **Chandigarh University Novice Tournament:** Teams must **consist entirely of Chandigarh University students** who have never competed in Battlecode before.
 - **High School Tournament:** Teams must **consist entirely of high school students**.
 - **Final Tournament:** Teams must have qualified via the US or International Qualifier. The final match of the Newbie and High School tournaments will also be played at the final tournament.
 

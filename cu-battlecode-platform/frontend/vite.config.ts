@@ -15,7 +15,7 @@ export default defineConfig({
     eslint({ failOnError: false, failOnWarning: false }),
   ],
   server: {
-    port: 3000,
+    port: 3001,
     open: true,
   },
   build: {
